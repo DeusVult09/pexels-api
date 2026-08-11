@@ -1,2 +1,8 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Welcome to Pexels. Your memory is endless!</h1>
+<div class="form-box">
+    <%= form_with url: root_path, method: get do |form| %>
+    <div class="search-box">
+        <%= form.label :collection_id, "Pexels collection ID" %>
+        <%= form.text_field :collection_id, placeholder: "e.g 1234ph" %>
+    </div>
+</div>
