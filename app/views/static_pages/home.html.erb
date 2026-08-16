@@ -5,6 +5,25 @@
         <%= form.label :collection_id, "Pexels collection ID" %>
         <%= form.text_field :collection_id, placeholder: "e.g 1234ph" %>
     </div>
-    <div><%= form.submit "Show Photos" %></div>
+    <div><%= form.submit "Show Photo Collection" %></div>
+    <% end %>
+    
+    <% if @collection_id.present? %>
+        <% if @collection["media"].any? %>
+            <% @collection["media"].each do | photo | %>
+                <div style="border: 1.5px solid #09776e; border-radius: 5px; padding: 8px;">
+                <img src="<%= photo['src']['medium']%>" 
+                    alt="<%= photo["alt"] %>"
+                    style="width: 100%; 
+                        height: 250px; 
+                        object-fit: cover; 
+                        border-radius: 5px; "></div> 
+            <div><h3>Author:</h3>
+                <%= photo["photographer"]%>
+            </div>  
+            <% end %>
+            <% else %>
+                <h2>Collection Is Empty</h2>
+        <% end %> 
     <% end %>
 </div>

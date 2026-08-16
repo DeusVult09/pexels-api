@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
     if @collection_id.blank?
       flash.now[:alert] = "Please, enter your collection ID"
     else
-      @photos = PexelsClient.new.my_photos(@collection_id) 
+      @collection = PexelsClient.new.my_photos(@collection_id) 
     end
   end
 end
