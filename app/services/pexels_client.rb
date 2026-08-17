@@ -11,10 +11,7 @@ class PexelsClient
         type: 'photos'
       }
     )
-    data = response.parsed_response
-     
-    if data['media'].empty?
-      puts "This media collection is empty"
-    end
+
+    response.parsed_response
   end
 end

@@ -1,26 +1,28 @@
-<h1>Welcome to Pexels. Your memory is endless!</h1>
+<div style="text-align: center;"><h1>Welcome to Pexels. Your memory is endless!</h1></div>
 <div class="form-box">
-    <%= form_with url: root_path, method: get do |form| %>
-    <div class="search-box">
-        <%= form.label :collection_id, "Pexels collection ID" %>
-        <%= form.text_field :collection_id, placeholder: "e.g 1234ph" %>
-    </div>
-    <div><%= form.submit "Show Photo Collection" %></div>
+    <%= form_with url: root_path, method: :get do |form| %>
+    <div class="search-box", style="text-align: center;">
+        <%= form.label :collection_id,  "Pexels collection ID" %>
+        <%= form.text_field :collection_id, placeholder: "e.g 1234ph" %><br><br>
+
+        <div><%= form.submit "Show Photo Collection" %></div>      
+    </div>   
     <% end %>
     
     <% if @collection_id.present? %>
         <% if @collection["media"].any? %>
             <% @collection["media"].each do | photo | %>
-                <div style="border: 1.5px solid #09776e; border-radius: 5px; padding: 8px;">
-                <img src="<%= photo['src']['medium']%>" 
-                    alt="<%= photo["alt"] %>"
-                    style="width: 100%; 
-                        height: 250px; 
-                        object-fit: cover; 
-                        border-radius: 5px; "></div> 
-            <div><h3>Author:</h3>
-                <%= photo["photographer"]%>
-            </div>  
+                <div style="border: 1.5px solid #f6acee; 
+                border-radius: 5px; padding: 8px;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 5px;">
+                    <img src="<%= photo['src']['medium']%>" 
+                        alt="<%= photo["alt"] %>"
+                        object-fit: fill; 
+                        border-radius: 5px; ">
+                    <div><h3>Author:</h3><%= photo["photographer"]%></div>  
+                </div> 
             <% end %>
             <% else %>
                 <h2>Collection Is Empty</h2>
