@@ -7,23 +7,30 @@
 
         <div><%= form.submit "Show Photo Collection" %></div>      
     </div>   
-    <% end %>
+    <% end %><br><br>
     
     <% if @collection_id.present? %>
         <% if @collection["media"].any? %>
-            <% @collection["media"].each do | photo | %>
-                <div style="border: 1.5px solid #f6acee; 
-                border-radius: 5px; padding: 8px;
+            <div style="
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 5px;">
-                    <img src="<%= photo['src']['medium']%>" 
-                        alt="<%= photo["alt"] %>"
-                        object-fit: fill; 
-                        border-radius: 5px; ">
-                    <div><h3>Author:</h3><%= photo["photographer"]%></div>  
-                </div> 
-            <% end %>
+
+                <% @collection["media"].each do |photo| %>
+                    <div style="border: 1.5px solid #f6acee; border-radius: 5px; padding: 8px;">
+                        <img src="<%= photo['src']['medium'] %>"
+                             alt="<%= photo['alt'] %>"
+                             style="width: 100%;
+                                    height: 250px;
+                                    object-fit: cover;
+                                    border-radius: 5px;">
+                        <div>
+                            <h3>Author:</h3>
+                            <%= photo["photographer"] %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
             <% else %>
                 <h2>Collection Is Empty</h2>
         <% end %> 
